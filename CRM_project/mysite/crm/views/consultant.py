@@ -9,6 +9,7 @@ import copy
 from django.http import QueryDict
 from django.db import transaction
 from django.conf import settings
+from rbac.server.init_permission import init_permission
 
 
 # Create your views here.
@@ -19,9 +20,12 @@ def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        obj = auth.authenticate(username=username, password=password)
+        obj = auth.authenticate(request, username=username, password=password)
         if obj:
             auth.login(request, obj)
+            ret = init_permission(request, obj)
+            if ret:
+                return ret
             return redirect(reverse('crm:my_customer'))
     return render(request, 'login.html')
 

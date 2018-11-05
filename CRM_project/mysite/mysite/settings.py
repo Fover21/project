@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crm.apps.CrmConfig',
+    'rbac.apps.RbacConfig',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'rbac.middlewares.rbac.PermissionMiddleware',
 ]
 
 ROOT_URLCONF = 'mysite.urls'
@@ -135,3 +137,13 @@ STATICFILES_DIRS = [
 AUTH_USER_MODEL = 'crm.UserProfile'
 
 CUSTOMER_MAX_NUM = 150
+
+#  ###### 权限相关的配置 ######
+PERMISSION_SESSION_KEY = 'permissions'
+MENU_SESSION_KEY = 'menus'
+WHITE_URL_LIST = [
+    r'^/login/$',
+    r'^/logout/$',
+    r'^/reg/$',
+    r'^/admin/.*',
+]

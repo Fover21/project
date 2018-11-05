@@ -7,6 +7,7 @@ from multiselectfield import MultiSelectField
 from django.utils.safestring import mark_safe
 from django.utils.html import format_html
 from django.shortcuts import reverse
+from rbac.models import User
 
 course_choices = (('LinuxL', 'Linux中高级'),
                   ('PythonFullStack', 'Python高级全栈开发'),)
@@ -363,6 +364,9 @@ class UserProfile(AbstractBaseUser, PermissionsMixin):
 
     memo = models.TextField('备注', blank=True, null=True, default=None)
     date_joined = models.DateTimeField(auto_now_add=True)
+
+    # 关联权限管理的user
+    user = models.OneToOneField(to=User, null=True, blank=True)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['name']

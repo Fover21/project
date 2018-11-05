@@ -19,6 +19,8 @@ from crm.views import consultant
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # 权限
+    url(r'rbac/', include('rbac.urls', namespace='rbac')),
 
     # 登录
     url(r'^login/', consultant.login, name='login'),
@@ -26,13 +28,12 @@ urlpatterns = [
     url(r'^logout/', consultant.login, name='logout'),
 
     # 注册
-    url(r'^register/', consultant.register),
+    url(r'^register/', consultant.register, name='register'),
     # 展示客户信息
     url(r'^crm/', include('crm.urls', namespace='crm')),
 
-
     # 测试分页
-    url(r'^user_list/', consultant.user_list),
+    url(r'^user_list/', consultant.user_list, name='user_list'),
     # 练习分页
-    url(r'^practice_pagination/', consultant.practice_pagination),
+    url(r'^practice_pagination/', consultant.practice_pagination, name='practice_pagination'),
 ]
