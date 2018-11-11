@@ -151,7 +151,7 @@ def course(request, class_id=None, edit_id=None):
             next = request.GET.get('next')
             if next:
                 return redirect(next)
-            redirect(redirect(reverse('crm:course_list', args=(class_id,))))
+            return redirect(reverse('crm:course_list', args=(class_id,)))
     return render(request, 'crm/forms.html', {
         "form_obj": form_obj,
         'title': title,

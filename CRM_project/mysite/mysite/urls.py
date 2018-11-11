@@ -36,4 +36,7 @@ urlpatterns = [
     url(r'^user_list/', consultant.user_list, name='user_list'),
     # 练习分页
     url(r'^practice_pagination/', consultant.practice_pagination, name='practice_pagination'),
+
+    # 验证码
+    url(r'^v_code/', consultant.v_code,name='v_code'),
 ]

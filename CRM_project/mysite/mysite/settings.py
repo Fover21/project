@@ -146,4 +146,5 @@ WHITE_URL_LIST = [
     r'^/logout/$',
     r'^/reg/$',
     r'^/admin/.*',
+    r'^/v_code/.*',
 ]

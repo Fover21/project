@@ -31,6 +31,24 @@
                 <div class="login-center-input-text">密码</div>
             </div>
         </div>
+
+
+        <div class="login-center clearfix">
+                <div class="login-center-img"><img src="{% static 'imgs/password.png' %}"></div>
+                <div class="login-center-input">
+                    <input type="text" name="v_code" value="" placeholder="请输入验证码" onfocus="this.placeholder=''"
+                           onblur="this.placeholder='请输入验证码'">
+                    <div class="login-center-input-text">验证码</div>
+                </div>
+            </div>
+            <div style="text-align: center">
+                <img src="{% url 'v_code' %}" alt="" id="v_code">
+            </div>
+
+            <p style="color: red;text-align: center">{{ err_msg }}</p>
+
+
+
         <div style="text-align: center">
             <button type="submit" class="login-button">登录</button>
         </div>
@@ -45,7 +63,14 @@
 
 <script src="{% static 'js/particles.min.js' %}"></script>
 <script src="{% static 'js/app.js' %}"></script>
+<script>
+    img = document.getElementById('v_code');
+    img.onclick = function () {
+        img.src += '?'
+    }
+</script>
 <script type="text/javascript">
+
     function hasClass(elem, cls) {
         cls = cls || '';
         if (cls.replace(/\s/g, '').length == 0) return false; //当cls没有参数时，返回false
